@@ -1,0 +1,25 @@
+site_name: ID3A / FAST
+#site_url:
+
+theme: readthedocs
+
+nav:
+    - home:
+        - welcome: 'index.md'
+        - userguide:
+            - introduction:
+                - beamline layout: 'userguide/intro/3a_layout.md'
+                - useful spec commands: 'userguide/intro/3a_spec_guide.md'
+            - pre scan prep:
+                - atten and exposure check: 'userguide/pre_scan/atten_check.md'
+                - sample alignment: 'userguide/pre_scan/sample_align.md'
+                - setting up DIC: 'userguide/pre_scan/dic.md'
+            - running scans:
+                - calibrations: 'userguide/scans/calib.md'
+                - far field scans: 'userguide/scans/ff/ff_scans.md'
+                - near field scans: 'userguide/scans/nf/nf_scans.md'
+                - tomo scans: 'userguide/scans/tomo/tomo_scans.md'
+        - staff docs: 'staff_docs.md'
+    #        - Commissioning notes: commission.md
+        - about: 'about.md'
+
