@@ -7,3 +7,8 @@ Welcome to the Formation And Shaping Technology (FAST) beamline located at the I
 Contact:  
 	-	[Kate Shanks (Lead Scientist)](<mailto:ksg52@cornell.edu>)  
 	-	[Amlan Das (Postdoc)](<mailto:amlandas@cornell.edu>)
+	
+## Data collection and beamline operation
+* [Calibration scans](https://ksg52.github.io/CHESS-ID3A-FAST/userguide/scans/calib.md/) 
+
+
