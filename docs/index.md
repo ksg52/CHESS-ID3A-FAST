@@ -9,6 +9,6 @@ Contact:
 	-	[Amlan Das (Postdoc)](<mailto:amlandas@cornell.edu>)
 	
 ## Data collection and beamline operation
-* [Calibration scans](https://ksg52.github.io/CHESS-ID3A-FAST/userguide/scans/calib/) 
+* [Calibration scans](userguide/scans/calib/) 
 
 
