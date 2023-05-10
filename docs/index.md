@@ -16,4 +16,7 @@ Contact:
 * [Near-field HEDM scans](userguide/scans/nf/nf_scans.md)
 * [Tomography scans](userguide/scans/tomo/tomo_scans.md)
 
+## Software and computing resources
+* [Accessing CHESS compute resources]
+
 
