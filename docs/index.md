@@ -17,6 +17,6 @@ Contact:
 * [Tomography scans](userguide/scans/tomo/tomo_scans.md)
 
 ## Software and computing resources
-* [Accessing CHESS compute resources]
+* [Accessing CHESS compute resources](userguide/compute/accessing_compute_resource.md)
 
 
