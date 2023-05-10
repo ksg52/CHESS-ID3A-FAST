@@ -1,8 +1,8 @@
 ## Accessing CHESS compute resources
-You should not perform operations requiring signficant processing power or memory on the station computer. Instead, you can access the dedicated 3A workstation f2-analysis-2 or use the CHESS Compute Farm. To access these, you will use lnx201.classe.cornell.edu as a "stepping stone" into the rest of the network.
+You should not perform operations requiring signficant processing power or memory on the station computer. Instead, you can access the dedicated 3A workstation f2-analysis-2 or use the CHESS Compute Farm. To access these, you will use lnx201.classe.cornell.edu as a "stepping stone" into the rest of the network. Like the station computer, lnx201 has limited CPU/RAM resources, so only use it for lightweight operations such as filesystem navigation, basic text file editing/viewing, and ssh'ing to other places.
 
 Options for performing analysis on CHESS compute resources:
-- Log into workstation f2-analysis-2 (can NoMachine to this computer, or ssh from lnx201.classe.cornell.edu)
+- Log into workstation f2-analysis-2 (can NoMachine to this computer, or ssh from lnx20.classe.cornell.edu)
 - Use the general nodes on the CLASSE compute Farm (available to anyone with a CLASSE ID)
 - Use the FAST nodes on the CLASSE Compute Farm (available to whitelisted individuals; ask your beamline scientist for access)
 
