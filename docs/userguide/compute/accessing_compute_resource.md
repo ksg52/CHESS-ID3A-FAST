@@ -12,7 +12,7 @@ CLASSE Compute Farm intro and how-to [here](https://wiki.classe.cornell.edu/Comp
 
 Logging into an interactive terminal on the Compute Farm:
 - ```ssh -Y [your CLASSE ID]@lnx201.classe.cornell.edu```
-- ```qrsh -q interactive.q``` (puts you into an interactive terminal just like a normal terminal)
+- ```qrsh -q interactive.q``` (puts you into an interactive terminal, operates just like a normal Linux terminal)
 - Or if you have FAST node access: ```qrsh -q chess_fast_interactive.q```
 
 **Note: both the analysis computer and the Compute Farm are shared resources. Please be aware of your usage and its impact on others.**
