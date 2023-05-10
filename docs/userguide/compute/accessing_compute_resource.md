@@ -7,7 +7,7 @@ Options for performing analysis on CHESS compute resources:
 - Use the FAST nodes on the CLASSE Compute Farm (available to whitelisted individuals; ask your beamline scientist for access)
 
 
-CLASSE Compute Farm intro and how-to here: https://wiki.classe.cornell.edu/Computing/ComputeFarmIntro
+CLASSE Compute Farm intro and how-to [here](https://wiki.classe.cornell.edu/Computing/ComputeFarmIntro).
 
 
 Logging into an interactive terminal on the Compute Farm:
@@ -16,5 +16,5 @@ Logging into an interactive terminal on the Compute Farm:
 - Or if you have FAST node access: ```qrsh -q chess_fast_interactive.q```
 
 **Note: both the analysis computer and the Compute Farm are shared resources. Please be aware of your usage and its impact on others.**
-- You can check the current load on f2-analysis-2 from the command line by running the command ```top``` (quick guide to this command here: https://www.howtogeek.com/668986/how-to-use-the-linux-top-command-and-understand-its-output/).
+- You can check the current load on f2-analysis-2 from the command line by running the command ```top``` (quick guide to this command [here](https://www.howtogeek.com/668986/how-to-use-the-linux-top-command-and-understand-its-output/)).
 - You can check the current load on the FAST interactive nodes by running: ```qstat -f -u “*” -q chess_fast_interactive.q``` on lnx201.classe.cornell.edu. As a general rule please keep your typical use of the interactive nodes below 60 cores. Contact your beamline scientist if you anticipate needing resources beyond this level on a regular or extended basis.
