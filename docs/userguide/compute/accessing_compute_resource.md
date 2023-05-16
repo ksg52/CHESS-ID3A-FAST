@@ -12,8 +12,11 @@ CLASSE Compute Farm intro and how-to [here](https://wiki.classe.cornell.edu/Comp
 
 Logging into an interactive terminal on the Compute Farm:
 - ```ssh -Y [your CLASSE ID]@lnx201.classe.cornell.edu```
+    - Note: when ssh'ing from a Windows machine, you must install and run an X server (e.g. [Xming](https://sourceforge.net/projects/xming/)) to enable graphics forwarding.
+    - Alternatively: NoMachine into lnx201 (see NoMachine instructions [here](https://wiki.classe.cornell.edu/Computing/NoMachine)) 
 - ```qrsh -q interactive.q``` (puts you into an interactive terminal, operates just like a normal Linux terminal)
 - Or if you have FAST node access: ```qrsh -q chess_fast_interactive.q```
+
 
 **Note: both the analysis computer and the Compute Farm are shared resources. Please be aware of your usage and its impact on others.**
 - You can check the current load on f2-analysis-2 from the command line by running the command ```top``` (quick guide to this command [here](https://www.howtogeek.com/668986/how-to-use-the-linux-top-command-and-understand-its-output/)).
