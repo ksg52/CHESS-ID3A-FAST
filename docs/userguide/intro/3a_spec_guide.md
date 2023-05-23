@@ -43,9 +43,12 @@ spec.log for a given sample is saved in /nfs/chess/raw/[run cycle ID]/id3a/[user
 -	```watt``` returns the current attenuator thickness
 
 ##RAMS2 loading:
+**The RAMS2 operates in displacement control by default. Load control is possible, but should be used with care and only if you have consulted with beamline staff first.**
 -	```mvr_screw [displacement] [block] [velocity] [acceleration]``` moves the screw head by ```[displacement]``` mm, at corresponding ```[velocity]``` and ```[acceleration]```. Almost always set ```[block]``` = 1 to have mvr_screw block the spec terminal until motion is complete. ```[displacement]``` > 0 for tension, < 0 for compression. ```[velocity]``` and ```[acceleration]``` should be given as absolute values.
 -	```wm_screw``` returns the current screw position in mm
 -	```wm_force``` returns the current load cell reading in N
+-	```mv_force [force in N]``` switches from displacement control to load control and moves to the specified force (units: N). It will hold at this force until another ```mv_force``` command, or until ```rams_force_off```. **Note:** load control only works if the screw position is within a millimeter or so of 0 (the position it was at when the RAMS2 was last power cycled).
+-	```rams_force_off``` exits force control and re-enters displacement control
 
 ##data acquisition: far-field
 - ```sync_ff_on``` preps the far-field detector (Dexelas or GE) for data acquisition, moves the near-field detector out of the way, opens the garage door, and sets the attenuation to 8 mm steel (to prevent accidental damage to the far-field detector). **should be preceded by sync_nf_off** if the near-field detector has been in use.
