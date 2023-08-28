@@ -6,8 +6,9 @@ Welcome to the Formation And Shaping Technology (FAST) beamline located at the I
 
 Contact:  
 	-	[Kate Shanks (Staff Scientist)](<mailto:ksg52@cornell.edu>)  
-	-	[Amlan Das (Staff Scientist)](<mailto:amlandas@cornell.edu>)
-	-	[Sven Gustafson (Postdoc)][(<mailto:seg246@cornell.edu>)]
+	-	[Amlan Das (Staff Scientist)](<mailto:amlandas@cornell.edu>)  
+	-	[Sven Gustafson (Postdoc)](<mailto:seg246@cornell.edu>)  
+ 
 	
 ## Data collection and beamline operation
 * [SPEC commands](userguide/intro/3a_spec_guide.md)
