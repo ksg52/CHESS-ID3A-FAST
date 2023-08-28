@@ -5,8 +5,9 @@ ID3A / FAST
 Welcome to the Formation And Shaping Technology (FAST) beamline located at the ID3A hutch at CHESS.
 
 Contact:  
-	-	[Kate Shanks (Lead Scientist)](<mailto:ksg52@cornell.edu>)  
-	-	[Amlan Das (Postdoc)](<mailto:amlandas@cornell.edu>)
+	-	[Kate Shanks (Staff Scientist)](<mailto:ksg52@cornell.edu>)  
+	-	[Amlan Das (Staff Scientist)](<mailto:amlandas@cornell.edu>)
+	-	[Sven Gustafson (Postdoc)][(<mailto:seg246@cornell.edu>)]
 	
 ## Data collection and beamline operation
 * [SPEC commands](userguide/intro/3a_spec_guide.md)
