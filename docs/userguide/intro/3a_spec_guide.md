@@ -5,9 +5,11 @@ spec.log for a given sample is saved in /nfs/chess/raw/[run cycle ID]/id3a/[user
 ##Basic spec commands:
 
 -	```ascan [motor] [start] [stop] [#steps] [count time]``` is an absolute position scan of ```[motor]```
+    - if aligning, use ```mbascan [motor] [start] [stop] [#steps] [count time]``` to automatically close garage door to protect far-field detectors
 -	```dscan [motor] [relative start] [relative stop] [#steps] [count time]``` is a relative position scan of ```[motor]```
+    - if aligning, use ```mbdscan [motor] [start] [stop] [#steps] [count time]``` to automatically close garage door to protect far-field detectors
 -	```d2scan``` does a dscan of 2 motors simultaneously
--	```lup [motor]``` … is identical to dscan
+    - if aligning, use ```mbd2scan [motor] [start] [stop] [#steps] [count time]``` to automatically close garage door to protect far-field detectors
 -	```umv [motor] [position]``` is an absolute move of ```[motor]``` to ```[position]```
 -	```umvr [motor] [relative position]``` is a relative move
 -	```tw [motor] [step size]``` gives you a prompt to move ```[motor]``` by relative ```+/- [step size]```. Within the prompt hit enter to do the move, type ```+``` or ```–``` to change directions, type a new step size to change step sizes; type anything else to exit tweak mode
