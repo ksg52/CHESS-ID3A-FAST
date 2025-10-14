@@ -18,6 +18,7 @@ Contact:
 * [Near-field HEDM scans](userguide/scans/nf/nf_scans.md)
 * [Tomography scans](userguide/scans/tomo/tomo_scans.md)
 * [Eiger 16M CdTe operations](userguide/hardware/EIG16M_CdTe/readme.md)
+* [Retiga E7 operations](userguide/hardware/RetigaE7/e7.md)
 
 ## Software and computing resources
 * [Accessing CHESS compute resources](userguide/compute/accessing_compute_resource.md)
