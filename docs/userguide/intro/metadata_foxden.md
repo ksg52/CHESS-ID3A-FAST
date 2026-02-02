@@ -2,8 +2,8 @@ FOXDEN is a collection of services intended to facilitate the capture, curation,
 
 Sample-level metadata records can be constructed and, if desired, injected directly into FOXDEN directly from SPEC during data collection. To set up FOXDEN record automation, in SPEC run ```foxden_setup```. In the menu that comes up, configure options as desired:
 
-- Metadata service records ```on/off```: if on, will...
-- SpecScans service records ```on/off```: if on, will...
+- Metadata service records ```on/off```: if on, will construct a sample-level metadata record when ```newsample``` is run from SPEC, and inject to FOXDEN or just save the record .json according to the setting chosen under "record submission location" below.
+- SpecScans service records ```on/off```: if on, will construct a SPEC Scan Service record .json after each SPEC scan and submit to the FOXDEN SPEC Scan Service [https://foxden.classe.cornell.edu:8344/info/specscans](https://foxden.classe.cornell.edu:8344/info/specscans)
 - Manual metadata input ```enable/disable```: if enabled, SPEC will prompt for metadata values during ```newuserid``` and ```newsample```. If disabled, ...
 - Record submission location ```prod services/file only/dev services```:
     - if ```prod services```: records will be submitted to the production server [https://foxden.classe.cornell.edu:8344](https://foxden.classe.cornell.edu:8344)
