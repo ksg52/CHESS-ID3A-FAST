@@ -18,3 +18,20 @@ Sample-level metadata records can be constructed and, if desired, injected direc
  
 FOXDEN records can also be created manually via webform at [https://foxden.classe.cornell.edu:8344/meta](https://foxden.classe.cornell.edu:8344/meta). In the dropdown menu labeled "Beamlines" on the left side of that page, choose a beamline schema (probably 3A if you're reading this guide!) to use the ID3A schema for a record describing sample-level data collected at the beamline, or choose "user" to define your own schema.
 
+**Record injection from command line:**
+It is also possible to inject records directly from the Linux command line. To do this, you must be working from within the CHESS network (e.g. on the station computer, lnx201, etc) and you must be a member of the "foxdenrw" LDAP group.
+
+Provided these conditions are met, follow this procedure:
+```
+export FOXDEN_CONFIG=/nfs/chess/user/chess_chapaas/.foxden.yaml
+export KRB5CCNAME=FILE:$HOME/krb5cc_ccache
+kinit
+foxden token create write
+foxden meta add --schema=[schema you wish to use] [.json file containing record to be injected]
+```
+
+For example, to inject a record ```ceo2.json``` that conforms to the ID3A metadata schema, I would run the command ```foxden meta add --schema=ID3A ceo2.json``` from the directory containing ```ceo2.json```.
+
+
+
+
