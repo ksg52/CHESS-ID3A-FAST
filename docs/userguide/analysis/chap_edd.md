@@ -11,8 +11,8 @@ Copy both pipeline `.yaml` files from the example folder into your own
 working directory:
 
 ```bash
-cp /path/to/example/folder/*.yaml /your/working/directory/
-cd /your/working/directory/
+cp /nfs/chess/aux/cycles/*cycle_num*/id1a3/*btr*/reduced_data/*previous_sample_name*/*.yaml /nfs/chess/aux/cycles/*cycle_num*/id1a3/*btr*/reduced_data/*current_sample_name*/
+cd /nfs/chess/aux/cycles/*cycle_num*/id1a3/*btr*/reduced_data/*current_sample_name*/
 ```
 
 You should now have something like `pipeline_map.yaml` and
