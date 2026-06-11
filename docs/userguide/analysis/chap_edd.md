@@ -131,9 +131,6 @@ popping up plots. Check:
 | File                    | Field                       | Set it to                           |
 |-------------------------|-----------------------------|--------------------------------------|
 | `pipeline_map.yaml`     | `EddMapReader.filename`     | your sample's `.par` file             |
-| `pipeline_strain.yaml`  | `YAMLReader.filename`       | your `tth_calibration_result.yaml`    |
-| `pipeline_strain.yaml`  | `materials`                 | your sample's material/lattice params |
-| both                    | `config.outputdir`          | a unique output folder name           |
 
 Everything else (detector configs, `find_peak_cutoff`,
 `rel_height_cutoff`, etc.) should stay as the example provides unless you
