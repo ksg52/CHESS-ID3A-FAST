@@ -26,7 +26,7 @@ Contact:
 * [Near-field HEDM data processing tutorial](https://cornell.box.com/s/7btbs44evg47rsix540l9bqlp4mrcaia)
 * [Tomography data processing with CHESS Analysis Pipeline (CHAP)](https://cornell.box.com/s/tblu711mnoajszul8x4kmpjxoy30ajvb)
 * [Powder diffraction analysis tutorial using HEXRD](https://cornell.box.com/v/chess-fast-guide-powder)
-* [EDD using CHAP](userguide/intro/chap_edd.md)
+* [EDD using CHAP](userguide/analysis/chap_edd.md)
 
 
 
