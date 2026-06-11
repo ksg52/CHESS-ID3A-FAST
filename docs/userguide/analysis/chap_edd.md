@@ -41,7 +41,7 @@ setup differs from the example.
 
 ---
 
-## 3. Edit `pipeline_strain.yaml`
+<!-- ## 3. Edit `pipeline_strain.yaml`
 
 ### Update the calibration file path
 
@@ -100,7 +100,7 @@ source /nfs/chess/sw/miniconda3_msnc/bin/activate
 conda activate chap_dev
 ```
 
----
+--- -->
 
 ## 6. Run the pipelines in order
 
@@ -140,23 +140,4 @@ Everything else (detector configs, `find_peak_cutoff`,
 have a specific reason to change it.
 
 ---
-
-## Troubleshooting
-
-- **`command not found: run_chap_edd_dev`** — the conda environment isn't
-  activated. Run `which CHAP` and `conda env list` to check.
-- **File not found errors** — paths are relative to where you run the
-  command from. Either `cd` into the right directory first, or use absolute
-  paths in the YAML.
-- **Plots pop up and block execution** — set `interactive: false` (already
-  set above), or if you need interactive picking over SSH, set
-  `MPLBACKEND=WebAgg` and use the browser-forwarded plot window.
-- **Long-running jobs** — run inside `tmux` so the job survives SSH
-  disconnects:
-
-  ```bash
-  tmux new -s chap
-  conda activate chap_dev
-  run_chap_edd_dev pipeline_map.yaml
-  # Ctrl-b then d to detach; reattach later with: tmux attach -t chap
   ```
