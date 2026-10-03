@@ -19,6 +19,9 @@ nav:
                 - far field scans: 'userguide/scans/ff/ff_scans.md'
                 - near field scans: 'userguide/scans/nf/nf_scans.md'
                 - tomo scans: 'userguide/scans/tomo/tomo_scans.md'
+            - data analysis:
+                - tomography: 'userguide/data_analysis/tomo.md'
+                - powder diffraction: 'userguide/data_analysis/powder.md'
         - staff docs: 'staff_docs.md'
     #        - Commissioning notes: commission.md
         - about: 'about.md'
