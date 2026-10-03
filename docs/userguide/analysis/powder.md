@@ -4,16 +4,15 @@ Dexela (ff1 + ff2) powder data are integrated with hexrd into intensity vs.
 two-theta lineouts. This runs automatically on the compute farm after each
 scan, and whole sample folders can be (re)submitted by hand.
 
-The scripts come with the `fast-python-scripts` repository. Clone it into
-your experiment's `reduced_data` folder:
+The scripts come with the `fast-python-scripts` folder, which is already set
+up in your experiment's `reduced_data` folder. Check that it is there:
 
-    cd /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data
-    git clone https://gitlab01.classe.cornell.edu/ad785/fast-python-scripts.git
+    ls /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data/fast-python-scripts
 
 ## 1. Make the config file
 
 Each experiment needs one YAML config in its `reduced_data` folder. Copy the
-template from your clone and edit it:
+template from `fast-python-scripts` and edit it:
 
     cd /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data
     cp fast-python-scripts/postscan_automation/powder/dex/config.yaml dex_powder_int_config.yaml
@@ -34,42 +33,30 @@ The template comments explain every setting; the main ones are:
 | `panels` | Panel names and the flip applied to each (`ff1: lr`, `ff2: ud`) |
 | `save_text`, `save_images`, `save_polar` | Save the lineout `.txt`, the lineout plot, and/or the polar image |
 
-## 2. Automatic integration after each scan
+## 2. Submitting whole sample folders
 
-Turn the postscan integration on in spec:
-
-    powder_postscan_on
-
-After every scan with the Dexela as far-field detector (`SYNC_FF_DETECTOR`
-is `"dexela"`), spec submits one integration job for that scan. If the
-config file is missing, the scan is skipped with a message. Turn it off with
-
-    powder_postscan_off
-
-## 3. Submitting whole sample folders
-
-To integrate scans that were collected with the postscan integration off, or
-to redo them after changing the config, submit whole sample folders with
-`submit_powder_folders.py` from your clone. Run it with the `station_env`
-env, on a machine where `qsub` works:
+To integrate scans that were not integrated automatically, or to redo them
+after changing the config, submit whole sample folders with
+`submit_powder_folders.py` from `fast-python-scripts`. Run it with the
+`station_env` env, on a machine where `qsub` works:
 
     cd /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data
     /nfs/chess/sw/miniforge3_fast/envs/station_env/bin/python \
         fast-python-scripts/data_analysis/powder/submit_powder_folders.py \
         /nfs/chess/raw/<cycle>/id3a/<btr>/<sample> [more sample folders] [options]
 
-It submits one job per scan in each sample folder, exactly as spec does,
-using the same `dex_powder_int_config.yaml`. It skips the dark scan and
-scans that don't have a raw file for each panel, and it stops before
-submitting anything if a folder doesn't match the config's `cycle`,
-`beamline` and `btr`.
+It submits one job per scan in each sample folder, the same way as the
+automatic integration after each scan, using the same
+`dex_powder_int_config.yaml`. It skips the dark scan and scans that don't
+have a raw file for each panel, and it stops before submitting anything if a
+folder doesn't match the config's `cycle`, `beamline` and `btr`.
 
 Folder names relative to the current folder work too, e.g. from
 `/nfs/chess/raw/<cycle>/id3a/<btr>`: `... submit_powder_folders.py sample1 sample2`.
 
 | Option | Meaning |
 |---|---|
-| `--scans 2,4-6` | Only these scan numbers |
+| `--scans 2,4-6` | Only these scan numbers. The same scans are used for every sample folder given; a sample that lacks one of them is reported and the rest are still submitted. For different scans per sample, run the script once per sample. |
 | `--dry-run` | Print the `qsub` commands without submitting them |
 | `-c <file>` | Use another config file |
 

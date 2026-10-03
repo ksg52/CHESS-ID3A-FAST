@@ -4,11 +4,10 @@ Tomography scans are reconstructed with a Jupyter notebook that uses tomopy.
 
 ## Files
 
-The notebook comes with the `fast-python-scripts` repository. Clone it into
-your experiment's `reduced_data` folder:
+The notebook comes with the `fast-python-scripts` folder, which is already
+set up in your experiment's `reduced_data` folder. Check that it is there:
 
-    cd /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data
-    git clone https://gitlab01.classe.cornell.edu/ad785/fast-python-scripts.git
+    ls /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data/fast-python-scripts
 
 In `fast-python-scripts/data_analysis/tomo/`:
 
