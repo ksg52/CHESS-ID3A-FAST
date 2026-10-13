@@ -15,7 +15,7 @@ Each experiment needs one YAML config in its `reduced_data` folder. Copy the
 template from `fast-python-scripts` and edit it:
 
     cd /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data
-    cp fast-python-scripts/postscan_automation/powder/dex/config.yaml dex_powder_int_config.yaml
+    cp fast-python-scripts/data_analysis/powder/config.yaml dex_powder_int_config.yaml
 
 The template comments explain every setting; the main ones are:
 
@@ -59,6 +59,7 @@ Folder names relative to the current folder work too, e.g. from
 | `--scans 2,4-6` | Only these scan numbers. The same scans are used for every sample folder given; a sample that lacks one of them is reported and the rest are still submitted. For different scans per sample, run the script once per sample. |
 | `--dry-run` | Print the `qsub` commands without submitting them |
 | `-c <file>` | Use another config file |
+| `--queue <name>` | SGE queue to submit to (default `all.q`) |
 
 ## Output and job logs
 

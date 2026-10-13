@@ -25,6 +25,7 @@ nav:
                 - Dexela: 'userguide/hardware/Dexelas/readme.md'
                 - Retiga E7: 'userguide/hardware/RetigaE7/e7.md'
             - data analysis:
+                - far-field frame caches: 'userguide/analysis/ff_preprocess.md'
                 - tomography: 'userguide/analysis/tomo.md'
                 - powder diffraction: 'userguide/analysis/powder.md'
                 - EDD using CHAP: 'userguide/analysis/chap_edd.md'

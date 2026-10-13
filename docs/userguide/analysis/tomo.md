@@ -18,15 +18,15 @@ In `fast-python-scripts/data_analysis/tomo/`:
 
 ## Python environment
 
-Use the conda env `tomo`:
+Use the conda env `analysis`:
 
-    /nfs/chess/sw/miniforge3_fast/envs/tomo
+    /nfs/chess/sw/miniforge3_fast/envs/analysis
 
 In VS Code, open the notebook, then:
 
 1. Click **Select Kernel** (top right).
 2. Choose **Python Environments...**
-3. Pick `tomo` (`/nfs/chess/sw/miniforge3_fast/envs/tomo/bin/python`). If it is not listed, choose **Enter interpreter path** and paste that path.
+3. Pick `analysis` (`/nfs/chess/sw/miniforge3_fast/envs/analysis/bin/python`). If it is not listed, choose **Enter interpreter path** and paste that path.
 
 ## Inputs
 
