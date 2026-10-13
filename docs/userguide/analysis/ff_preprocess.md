@@ -8,18 +8,13 @@ scan taken in ff mode with the Dexela, as set in your experiment's
 `analysis_from_spec.yaml` (see below). Scans covering 90° of omega or less
 (`min_omega_range`) are skipped. Scans can also be (re)run by hand.
 
-The scripts come with the `fast-python-scripts` folder, which is already set
-up in your experiment's `reduced_data` folder. Check that it is there:
+## 1. Get the config file
 
-    ls /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data/fast-python-scripts
+Everything is set in one YAML config. Ask your beamline scientist for an
+example ff config, save it in your experiment's `reduced_data` folder and
+edit it:
 
-## 1. Make the config file
-
-Everything is set in one YAML config. Copy the template into your
-experiment's `reduced_data` folder and edit it:
-
-    cd /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data
-    cp fast-python-scripts/data_analysis/example_ff.yaml analysis_from_spec.yaml
+    /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data/analysis_from_spec.yaml
 
 The processing after each scan always uses the config named
 `analysis_from_spec.yaml` in `reduced_data`. For runs by hand any name works,
@@ -27,7 +22,7 @@ e.g. a second config with another threshold. A config is either for ff or for
 powder (`technique`), not both.
 
 The main settings (all of them are explained in
-`fast-python-scripts/data_analysis/README.md`):
+`/nfs/chess/user/chess_id3a/fast-python-scripts/data_analysis/README.md`):
 
 | Setting | Meaning |
 |---|---|

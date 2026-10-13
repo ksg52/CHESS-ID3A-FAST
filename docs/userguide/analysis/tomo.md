@@ -4,17 +4,11 @@ Tomography scans are reconstructed with a Jupyter notebook that uses tomopy.
 
 ## Files
 
-The notebook comes with the `fast-python-scripts` folder, which is already
-set up in your experiment's `reduced_data` folder. Check that it is there:
+Ask your beamline scientist for the reconstruction notebook,
+`tomo_recon_notebook.ipynb`, and save it in your experiment's `reduced_data`
+folder:
 
-    ls /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data/fast-python-scripts
-
-In `fast-python-scripts/data_analysis/tomo/`:
-
-| File | What it is |
-|---|---|
-| `tomo_recon_notebook.ipynb` | The reconstruction notebook |
-| `TomoFunctions/tomo_lib.py`, `TomoFunctions/tomoFunctions3.py` | Helper functions the notebook imports |
+    /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data/
 
 ## Python environment
 
