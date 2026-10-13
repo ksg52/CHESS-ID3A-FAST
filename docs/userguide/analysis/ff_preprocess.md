@@ -3,9 +3,10 @@
 Far-field HEDM scans on the Dexela (ff1 + ff2) are turned into hexrd frame
 caches: for each panel, the median of the first 100 frames is subtracted as
 the dark, the panel gaps and flips are applied, and only pixels above a
-threshold are kept. This runs automatically on the compute farm after each ff
-scan. Scans can also be (re)run by hand, from a list of spec scans or par
-files.
+threshold are kept. This runs automatically on the compute farm after each
+scan taken in ff mode with the Dexela that covers more than 90° of omega
+(shorter scans, nf scans and other detectors are skipped). Scans can also be
+(re)run by hand, from a list of spec scans or par files.
 
 The scripts come with the `fast-python-scripts` folder, which is already set
 up in your experiment's `reduced_data` folder. Check that it is there:
