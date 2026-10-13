@@ -2,7 +2,8 @@
 
 Dexela (ff1 + ff2) powder data are integrated with hexrd into intensity vs.
 two-theta lineouts. This runs automatically on the compute farm after each
-scan, and whole sample folders can be (re)submitted by hand.
+scan taken in ff mode with the Dexela, as set in your experiment's
+`analysis_from_spec.yaml` (see below). Scans can also be (re)run by hand.
 
 The scripts come with the `fast-python-scripts` folder, which is already set
 up in your experiment's `reduced_data` folder. Check that it is there:
@@ -11,55 +12,61 @@ up in your experiment's `reduced_data` folder. Check that it is there:
 
 ## 1. Make the config file
 
-Each experiment needs one YAML config in its `reduced_data` folder. Copy the
-template from `fast-python-scripts` and edit it:
+Everything is set in one YAML config. Copy the template into your
+experiment's `reduced_data` folder and edit it:
 
     cd /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data
-    cp fast-python-scripts/data_analysis/powder/config.yaml dex_powder_int_config.yaml
+    cp fast-python-scripts/data_analysis/example_powder.yaml analysis_from_spec.yaml
 
-The template comments explain every setting; the main ones are:
+The integration after each scan always uses the config named
+`analysis_from_spec.yaml` in `reduced_data`. For runs by hand any name works.
+A config is either for ff or for powder (`technique`), not both.
+
+The main settings (all of them are explained in
+`fast-python-scripts/data_analysis/README.md`):
 
 | Setting | Meaning |
 |---|---|
+| `technique` | `powder` |
+| `hexrd_env` | Conda env with hexrd that runs the jobs |
+| `queue`, `slots` | Queue (`chess_fast.q`) and slots per job |
 | `cycle`, `beamline`, `btr` | Where the raw data are: `/nfs/chess/raw/<cycle>/<beamline>/<btr>/<sample>/<scan>/ff/` |
-| `instrument` | Calibrated instrument file: `.yml`, or `.hexrd` / `.h5` as saved by hexrdgui |
-| `output_dir` | Where results go; leave out or `null` for `/nfs/chess/aux/cycles/<cycle>/<beamline>/<btr>/reduced_data` |
+| `output_dir` | Where results go; `null` for the experiment's `reduced_data` |
+| `instrument` | Calibrated instrument file (full path): `.yml`, or `.hexrd` / `.h5` as saved by hexrdgui |
 | `tth_range` | Two-theta range in degrees, e.g. `[0.1, 24]` |
 | `eta_range` | One or more `[eta_min, eta_max]` ranges; one lineout per range |
 | `eta_resolution` | Eta bin size in degrees. `0.25` is recommended: `null` (finest resolution) needs about 32 GB per process, `0.25` about 4 GB |
 | `average_frames` | `false`: integrate every frame; `true`: integrate the average of the frames |
-| `dark_scan_n` | Scan number of the darkfield frames, or `null` for no dark subtraction |
+| `dark_scan_n` | Scan number of the darkfield frames, or `null` for no dark subtraction. This scan itself is not integrated |
 | `skip_frames` | Frames to drop at the start of each scan |
 | `panels` | Panel names and the flip applied to each (`ff1: lr`, `ff2: ud`) |
 | `save_text`, `save_images`, `save_polar` | Save the lineout `.txt`, the lineout plot, and/or the polar image |
 
-## 2. Submitting whole sample folders
+## 2. Running scans by hand
 
 To integrate scans that were not integrated automatically, or to redo them
-after changing the config, submit whole sample folders with
-`submit_powder_folders.py` from `fast-python-scripts`. Run it with the
-`station_env` env, on a machine where `qsub` works:
+after changing the config, use the `fast_analysis` command, on a machine
+where `qsub` works. Set it up once by adding this line to your `~/.bashrc`
+(it runs `fast_analysis.py` with the `analysis` env's python), then open a
+new terminal:
+
+    alias fast_analysis='/nfs/chess/sw/miniforge3_fast/envs/analysis/bin/python /nfs/chess/user/chess_id3a/fast-python-scripts/data_analysis/fast_analysis.py'
+
+Give it the sample, the scans and the config:
 
     cd /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data
-    /nfs/chess/sw/miniforge3_fast/envs/station_env/bin/python \
-        fast-python-scripts/data_analysis/powder/submit_powder_folders.py \
-        /nfs/chess/raw/<cycle>/id3a/<btr>/<sample> [more sample folders] [options]
+    fast_analysis <sample> 2,4-6 analysis_from_spec.yaml --dry-run
 
-It submits one job per scan in each sample folder, the same way as the
-automatic integration after each scan, using the same
-`dex_powder_int_config.yaml`. It skips the dark scan and scans that don't
-have a raw file for each panel, and it stops before submitting anything if a
-folder doesn't match the config's `cycle`, `beamline` and `btr`.
+or, for every scan in a `.par` file (the sample is the par file's folder):
 
-Folder names relative to the current folder work too, e.g. from
-`/nfs/chess/raw/<cycle>/id3a/<btr>`: `... submit_powder_folders.py sample1 sample2`.
+    fast_analysis --par /nfs/chess/raw/<cycle>/id3a/<btr>/<sample>/<file>.par analysis_from_spec.yaml --dry-run
 
-| Option | Meaning |
-|---|---|
-| `--scans 2,4-6` | Only these scan numbers. The same scans are used for every sample folder given; a sample that lacks one of them is reported and the rest are still submitted. For different scans per sample, run the script once per sample. |
-| `--dry-run` | Print the `qsub` commands without submitting them |
-| `-c <file>` | Use another config file |
-| `--queue <name>` | SGE queue to submit to (default `all.q`) |
+`--dry-run` checks the scans and prints the jobs without submitting them;
+run it again without `--dry-run` to submit one job per scan. To run the scans
+on the machine you are on instead of the queue, one after the other, add
+`--local` (it then also works where `qsub` doesn't). Each scan needs
+one raw file per panel; if one is missing, nothing is submitted and the
+problem scans are listed. The dark scan is skipped.
 
 ## Output and job logs
 
@@ -71,5 +78,5 @@ For each frame (or the frame average) and each eta range:
 with `_lineout.png` and `_polar.png` plots next to them. Negative eta bounds
 are written as e.g. `minus180`.
 
-Jobs run as `dex_powder_integration_job` (check them with `qstat`). Their
-logs are in `<aux btr>/reduced_data/job_logs/`.
+Jobs run as `powder_<sample>_<scan>` (check them with `qstat`). Their logs
+are in `<output_dir>/job_logs/`.
