@@ -27,6 +27,7 @@ Contact:
 * [Tomography data processing with CHESS Analysis Pipeline (CHAP)](https://cornell.box.com/s/tblu711mnoajszul8x4kmpjxoy30ajvb)
 * [Powder diffraction analysis tutorial using HEXRD](https://cornell.box.com/v/chess-fast-guide-powder)
 * [EDD using CHAP](userguide/analysis/chap_edd.md)
+* [Far-field frame caches (Dexela)](userguide/analysis/ff_preprocess.md)
 * [Tomography reconstruction](userguide/analysis/tomo.md)
 * [Powder diffraction integration](userguide/analysis/powder.md)
 
