@@ -18,21 +18,22 @@ spec.log for a given sample is saved in /nfs/chess/raw/[run cycle ID]/id3a/[user
 -	```ct [count time]``` counts for ```[count time]``` and displays the resulting ion chamber counts
 -	To change variable plotted on the y-axis in yellow spec graph: ```plotselect [counter]``` , then ```splot```
 -	```prdef [macro name]``` displays the definition of the macro, including the filename where it’s located
--	```qdo [macro name]``` recompiles a macro file
+-	```qdo [macro name]``` compiles a macro file
 -	```newsample``` prompts you to define a new sample name
 
  
 ##Checking and setting the beam width and height:
 -	```get_beam_width``` returns the width of the beam-defining slits (s0l, s0r) in mm
 -	```get_beam_height``` returns the height of the beam-defining slits (s0t, s0b) in mm
+-	```get_beam_size``` returns the width x height of the beam-defining slits in mm
 -	```set_beam_width``` sets the width of the beam-defining slits
 -	```set_beam_height``` sets the height of the beam-defining slits
 -	similar macros ```get_guard_width```, etc exist to check or set the guard slits (s1t,b,l,r)
 
 ##Absorption foil utilities:
--	```insert_foil [1,2,3,4]``` inserts Sn (29.200 keV), Pr (41.991 keV), Tb (51.996 keV), Yb (61.332 keV)
--	```remove_foils``` removes all foils
--	```where_foils``` tells you what foil is currently in as well as the monochromator energy
+-   Beam energy is calibrated and monitored by using the motor ```foil_ds``` to place one of several elemental foils in the beam path between IC0 and IC1. Beamline staff will have performed an energy calibration during x-ray alignment at the start of your beamtime. Particularly for powder XRD and far-field HEDM, you may wish to have the relevant foil in place during data collection so that the ratio of intensities between IC0 and IC1 at every scan point can be used as a frame-by-frame energy correction during data analysis.
+-	```p FOIL``` displays a list of the available foils, along with the absorption edge energy of each, and the position of ```foil_ds``` that will put that foil in the beam path
+-	```umv foil_ds [target position]``` to insert the desired foil
 
 ##Fast shutter and garage door:
 - ```opens``` opens the fast shutter
@@ -54,15 +55,15 @@ spec.log for a given sample is saved in /nfs/chess/raw/[run cycle ID]/id3a/[user
 -	```rams_force_off``` exits force control and re-enters displacement control
 
 ##data acquisition: far-field
-- ```sync_ff_on``` preps the far-field detector (Dexelas or GE) for data acquisition, moves the near-field detector out of the way, opens the garage door, and sets the attenuation to 8 mm steel (to prevent accidental damage to the far-field detector). **should be preceded by sync_nf_off** if the near-field detector has been in use.
-- ```sync_ct [number of frames] [exposure time] [OPTIONAL: darkfield]``` opens the fast shutter, acquires ```[number of frames]``` frames each with exposure time ```[exposure time]``` (in s) on the far-field detector, then closes the fast shutter. If the optional flag ```darkfield``` is used, the garage door and fast shutter are closed before data acquisition, and the garage door is opened afterwards.
-- ```slew_ome [ome start] [ome end] [number of frames] [exposure time] [OPTIONAL: darkfield]``` rotates RAMS2 ome from ```[ome start]``` to ```[ome end]```, acquiring ```[number of frames]``` with exposure time ```[exposure time]``` during rotation. The fast shutter is opened and closed at the beginning and end of data acquisition. If the optional flag ```darkfield``` is used, the garage door and fast shutter are closed before data acquisition, and the garage door is opened afterwards.
+- ```sync_ff_on``` preps the far-field detector (Dexelas or Eiger16M) for data acquisition, moves the near-field detector out of the way, and opens the garage door. **must be preceded by sync_nf_off** if the near-field detector has been in use.
+- ```tseries [number of frames] [exposure time]``` opens the fast shutter, acquires ```[number of frames]``` frames each with exposure time ```[exposure time]``` (in s) on the far-field detector, then closes the fast shutter. To acquire a darkfield, run ```close_garage_door``` and then your desired ```tseries```.
+- ```flyscan ome [ome start] [ome end] [number of frames] [exposure time]``` rotates RAMS2 ome from ```[ome start]``` to ```[ome end]```, acquiring ```[number of frames]``` with exposure time ```[exposure time]``` during rotation. The fast shutter is opened and closed at the beginning and end of data acquisition. To manually acquire a darkfield, run ```close_garage_door``` and then your desired ```flyscan ome```.
 - ```sync_ff_off``` removes the far-field detector from data acquisition and closes the garage door.
 
 ##data acquisition: near-field
-- ```sync_nf_on``` preps the near-field detector (Retiga or Manta) for data acquisition, moves the near-field detector into place, moves the near-field beamtop into place to block the direct beam, and sets the attenuation to 0 mm steel. **should be preceded by sync_ff_off** if the far-field detector has been in use.
+- ```sync_nf_on``` preps the near-field detector (Retiga or Manta) for data acquisition, moves the near-field detector into place, moves the near-field beamtop into place to block the direct beam, and sets the attenuation to 0 mm steel. **must be preceded by sync_ff_off** if the far-field detector has been in use.
 - ```sync_tomo_on``` is identical to ```sync_nf_on```, except that it moves the near-field beamtop out of the field of view.
-- ```slew_ome [ome start] [ome end] [number of frames] [exposure time] [OPTIONAL: darkfield]``` rotates RAMS2 ome from ```[ome start]``` to ```[ome end]```, acquiring ```[number of frames]``` with exposure time ```[exposure time]``` during rotation. The fast shutter is opened and closed at the beginning and end of data acquisition. If the optional flag ```darkfield``` is used, the garage door and fast shutter are closed before data acquisition, and the garage door is opened afterwards.
-- ```nf_stream_on``` starts a live stream of 1 s exposures on the near-field detector. Images are not saved.
-- ```nf_stream_off``` stops the live stream. **if nf_stream_on was used, nf_stream_off must be used prior to data acquisition** or images will not be saved.
+- ```flyscan ome [ome start] [ome end] [number of frames] [exposure time]``` rotates RAMS2 ome from ```[ome start]``` to ```[ome end]```, acquiring ```[number of frames]``` with exposure time ```[exposure time]``` during rotation. The fast shutter is opened and closed at the beginning and end of data acquisition. To manually acquire a darkfield, run ```shutter_auto_off```, your desired ```flyscan ome```, and then ```shutter_auto_on```. Note: darkfields are automatically acquired for each layer in a tomography scan run with ```do_tomo_scan_layers_array```. 
+- RETIGA ONLY: ```retiga_von 1``` starts a live stream of 1 s exposures on the near-field detector. Images are not saved.
+- RETIGA ONLY: ```retiga_voff``` stops the live stream. **if retiga_von was used, retiga_voff must be used prior to data acquisition** or images will not be saved.
 - ```sync_nf_off``` removes the near-field detector from data acquisition.
