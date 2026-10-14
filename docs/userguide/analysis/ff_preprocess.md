@@ -17,9 +17,12 @@ edit it:
     /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data/analysis_from_spec.yaml
 
 The processing after each scan always uses the config named
-`analysis_from_spec.yaml` in `reduced_data`. For runs by hand any name works,
-e.g. a second config with another threshold. A config is either for ff or for
-powder (`technique`), not both.
+`analysis_from_spec.yaml` in `reduced_data`: every scan processed
+automatically uses this file as it is at the time of the scan, so changes to
+it apply to all the following scans. For runs by hand, use a config with
+another name, e.g. `analyze_ff.yaml` (a copy of `analysis_from_spec.yaml`, or
+one with another threshold). A config is either for ff or for powder
+(`technique`), not both.
 
 The main settings (all of them are explained in
 `/nfs/chess/user/chess_id3a/fast-python-scripts/data_analysis/README.md`):
@@ -49,11 +52,11 @@ then open a new terminal:
 Give it the sample, the scans and the config:
 
     cd /nfs/chess/aux/cycles/<cycle>/id3a/<btr>/reduced_data
-    fast_analysis <sample> 10,12-15 analysis_from_spec.yaml --dry-run
+    fast_analysis <sample> 10,12-15 analyze_ff.yaml --dry-run
 
 or, for every scan in a `.par` file (the sample is the par file's folder):
 
-    fast_analysis --par /nfs/chess/raw/<cycle>/id3a/<btr>/<sample>/<file>.par analysis_from_spec.yaml --dry-run
+    fast_analysis --par /nfs/chess/raw/<cycle>/id3a/<btr>/<sample>/<file>.par analyze_ff.yaml --dry-run
 
 `--dry-run` checks the scans and prints the jobs without submitting them;
 run it again without `--dry-run` to submit one job per scan. To run the scans
