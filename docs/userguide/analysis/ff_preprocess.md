@@ -25,7 +25,7 @@ one with another threshold). A config is either for ff or for powder
 (`technique`), not both.
 
 The main settings (all of them are explained in
-`/nfs/chess/user/chess_id3a/fast-python-scripts/data_analysis/README.md`):
+`/nfs/chess/user/chess_id3a/fast-scripts/data_analysis/README.md`):
 
 | Setting | Meaning |
 |---|---|
@@ -47,7 +47,7 @@ machine where `qsub` works. Set it up once by adding this line to your
 `~/.bashrc` (it runs `fast_analysis.py` with the `analysis` env's python),
 then open a new terminal:
 
-    alias fast_analysis='/nfs/chess/sw/miniforge3_fast/envs/analysis/bin/python /nfs/chess/user/chess_id3a/fast-python-scripts/data_analysis/fast_analysis.py'
+    alias fast_analysis='/nfs/chess/sw/miniforge3_fast/envs/analysis/bin/python /nfs/chess/user/chess_id3a/fast-scripts/data_analysis/fast_analysis.py'
 
 Give it the sample, the scans and the config:
 
@@ -79,4 +79,6 @@ One frame cache per panel and scan:
     <output_dir>/<sample>/<scan>/<sample>_<scan>_ff2_<image_n>-cachefile.npz
 
 Jobs run as `ff_<sample>_<scan>` (check them with `qstat`). Their logs are
-in `<output_dir>/job_logs/`.
+in `<output_dir>/job_logs_<user>/`, where `<user>` is your login; logs of the
+jobs submitted automatically after each scan are in the folder of the login
+spec runs as.
